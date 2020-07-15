@@ -14,9 +14,12 @@ public class Panel1 {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         JButton button = new JButton("shock me");
+        JButton button2 = new JButton("bliss");
 
         panel.setBackground(Color.darkGray);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(button);
+        panel.add(button2);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(BorderLayout.EAST, panel);
