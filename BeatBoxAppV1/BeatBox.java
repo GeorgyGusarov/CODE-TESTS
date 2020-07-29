@@ -5,11 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.ArrayList;
 
 public class BeatBox {
     JPanel mainPanel;
-    ArrayList<JCheckBox> checkboxList;
+    ArrayList<JCheckBox> checkboxList; // хранит состояния флажков
     Sequencer sequencer;
     Sequence sequence;
     Track track;
@@ -50,6 +51,14 @@ public class BeatBox {
         JButton downTempo = new JButton("Tempo Down");
         downTempo.addActionListener(new MyDownTempoListener());
         buttonBox.add(downTempo);
+
+        JButton saveTrack = new JButton("Save Track");
+        saveTrack.addActionListener(new MySaveListener());
+        buttonBox.add(saveTrack);
+
+        JButton loadTrack = new JButton("Load Track");
+        loadTrack.addActionListener(new MyLoadInListener());
+        buttonBox.add(loadTrack);
 
         Box nameBox = new Box(BoxLayout.Y_AXIS);
         for (int i = 0; i < 16; i++) {
@@ -155,6 +164,60 @@ public class BeatBox {
         public void actionPerformed(ActionEvent e) {
             float tempoFactor = sequencer.getTempoFactor();
             sequencer.setTempoFactor((float) (tempoFactor * .97));
+        }
+    }
+
+    /**
+     * сохраняем схему BeatBox
+     */
+    public class MySaveListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            boolean[] checkBoxStatus = new boolean[256];
+
+            for (int i = 0; i < 256; i++) {
+                JCheckBox check = (JCheckBox) checkboxList.get(i);
+                if (check.isSelected()) {
+                    checkBoxStatus[i] = true;
+                }
+            }
+
+            try {
+                FileOutputStream fileStream = new FileOutputStream(new File("CheckBox.ser"));
+                ObjectOutputStream os = new ObjectOutputStream(fileStream);
+                os.writeObject(checkBoxStatus);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * востанавливаем схему BeatBox
+     */
+    public class MyLoadInListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            boolean[] checkBoxStatus = null;
+
+            try {
+                FileInputStream fileIn = new FileInputStream(new File("CheckBox.ser"));
+                ObjectInputStream is = new ObjectInputStream(fileIn);
+                checkBoxStatus = (boolean[]) is.readObject(); // readObject возвращает ссылку на тип Object, поэтому приводим его к boolean
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+            for (int i = 0; i < 256; i++) {
+                JCheckBox check = (JCheckBox) checkboxList.get(i);
+                if (checkBoxStatus[i]) {
+                    check.setSelected(true);
+                } else {
+                    check.setSelected(false);
+                }
+            }
+            sequencer.stop();
+            buildTrackAndStart();
         }
     }
 
