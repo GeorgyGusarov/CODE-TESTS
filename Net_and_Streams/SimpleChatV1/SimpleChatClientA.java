@@ -2,14 +2,15 @@ package Net_and_Streams.SimpleChatV1;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 
 public class SimpleChatClientA {
 
+    JTextArea incoming;
     JTextField outgoing;
+    BufferedReader reader;
     PrintWriter writer;
     Socket socket;
 
@@ -22,19 +23,32 @@ public class SimpleChatClientA {
         JFrame frame = new JFrame("Ludicrously Simple Chat Client");
         JPanel mainPanel = new JPanel();
 
+        incoming = new JTextArea(15, 50);
+        incoming.setLineWrap(true);
+        incoming.setWrapStyleWord(true);
+        incoming.setEditable(false);
+
+        JScrollPane qScroller = new JScrollPane(incoming);
+        qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         outgoing = new JTextField(20);
 
         JButton sendButton = new JButton("Send");
         sendButton.addActionListener(new SendButtonListener());
 
+        mainPanel.add(qScroller);
         mainPanel.add(outgoing);
         mainPanel.add(sendButton);
-        frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
 
         setUpNetworking();
 
-        frame.setSize(400, 500);
+        Thread readerThread = new Thread(new IncomingReader());
+        readerThread.start();
+
+        frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 500);
         frame.setVisible(true);
     }
 
@@ -42,9 +56,12 @@ public class SimpleChatClientA {
 
         try {
             socket = new Socket("192.168.0.1", 4242);
+
+            InputStreamReader streamReader = new InputStreamReader(socket.getInputStream());
+            reader = new BufferedReader(streamReader);
+
             writer = new PrintWriter(socket.getOutputStream());
             System.out.println("networking established");
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -63,6 +80,22 @@ public class SimpleChatClientA {
             }
             outgoing.setText(" ");
             outgoing.requestFocus();
+        }
+    }
+
+    public class IncomingReader implements Runnable {
+        @Override
+        public void run() {
+            String message;
+
+            try {
+                while ((message = reader.readLine()) != null) {
+                    System.out.println("read " + message);
+                    incoming.append(message + "\n");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
