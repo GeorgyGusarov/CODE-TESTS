@@ -14,7 +14,8 @@ public class SimpleChatClientA {
     Socket socket;
 
     public static void main(String[] args) {
-        new SimpleChatClientA().go();
+        SimpleChatClientA chat = new SimpleChatClientA();
+        chat.go();
     }
 
     public void go() {
