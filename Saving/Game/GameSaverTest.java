@@ -29,9 +29,9 @@ public class GameSaverTest {
             GameCharacter twoRestored = (GameCharacter) is.readObject();
             GameCharacter threeRestored = (GameCharacter) is.readObject();
 
-            System.out.println("Тип первого: " + oneRestored.getType());
-            System.out.println("Тип второго: " + twoRestored.getType() );
-            System.out.println("Тип третьего: " + threeRestored.getType());
+            System.out.println("Тип первого: " + oneRestored.getType() + " с оружием " + oneRestored.getWeapons());
+            System.out.println("Тип второго: " + twoRestored.getType()  + " с оружием " + twoRestored.getWeapons());
+            System.out.println("Тип третьего: " + threeRestored.getType() + " с оружием " + threeRestored.getWeapons());
         } catch (Exception e) {
             e.printStackTrace();
         }
