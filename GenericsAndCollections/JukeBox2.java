@@ -11,11 +11,11 @@ public class JukeBox2 {
         new JukeBox2().go();
     }
 
-    public void go() {
+    void go() {
         getSongs();
-        System.out.println("До вызова .sort() " + songList);
+        System.out.println("До вызова .sort()\n" + songList);
         Collections.sort(songList);
-        System.out.println("После вызова .sort() " + songList);
+        System.out.println("После вызова .sort()\n" + songList);
     }
 
     public void getSongs() {
