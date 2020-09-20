@@ -5,11 +5,26 @@ public class TestClass { // объект
     String s;   // поле объекта
 
     public static void main(String[] args) {
+        sum(4, 5);
+        abc();
 
     }
 
-    public void adc(int a) {
-
+    static void abc() {
+        System.out.println("abc");
     }
 
+//    public static void sum(int a, int b) {
+//        System.out.println(a + b);
+//    }
+
+    // пример аргумента переменной длинны
+    public static void sum(int... a) {
+        int result = 0;
+
+        for (int i = 0; i < a.length; i++) {
+            result += a[i];
+        }
+        System.out.println(result);
+    }
 }

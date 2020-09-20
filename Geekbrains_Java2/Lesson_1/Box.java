@@ -22,8 +22,6 @@ public class Box {
 //        box2.weight = 15;
 
 //        box = box2;
-
-        sum(2, 5);
     }
 
     public void info() {
@@ -40,19 +38,4 @@ public class Box {
         this.color = color;
         this.weight = weight;
     }
-
-//    public static void sum(int a, int b) {
-//        System.out.println(a + b);
-//    }
-
-    // пример аргумента переменной длинны
-    public static void sum(int... a) {
-        int result = 0;
-
-        for (int i = 0; i < a.length; i++) {
-           result += a[i];
-        }
-        System.out.println(result);
-    }
-
 }
