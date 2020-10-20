@@ -13,15 +13,6 @@ public class Box {
         box.info();
         box2.info();
         box3.info();
-//        box.color = "red";
-//        box.name = "test";
-//        box.weight = 10;
-//
-//        box2.color = "black";
-//        box2.name = "test2";
-//        box2.weight = 15;
-
-//        box = box2;
     }
 
     public void info() {
