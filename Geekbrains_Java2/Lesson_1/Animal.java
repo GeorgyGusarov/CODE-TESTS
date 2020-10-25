@@ -1,7 +1,6 @@
 package Geekbrains_Java2.Lesson_1;
 
 public class Animal {
-
     private int a;
     protected int z;
 
@@ -16,7 +15,6 @@ public class Animal {
 }
 
 class Cat extends Animal {
-
     protected int y;
 
     public Cat(int a, int z, int y) {
@@ -32,7 +30,6 @@ class Cat extends Animal {
 }
 
 class SuperCat extends Cat {
-
     int u;
 
     public SuperCat(int a, int z, int y, int u) {
