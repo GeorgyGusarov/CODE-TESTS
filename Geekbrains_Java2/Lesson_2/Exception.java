@@ -1,7 +1,6 @@
 package Geekbrains_Java2.Lesson_2;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class Exception {
     public static void main(String[] args) {
