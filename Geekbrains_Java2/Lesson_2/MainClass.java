@@ -46,7 +46,7 @@ public class MainClass {
 
 class MyArraySizeException extends RuntimeException {
     public MyArraySizeException() {
-        super("wrong size!");
+        super("wrong size!");   // прокидываем родительское сообщение
     }
 }
 
@@ -54,7 +54,7 @@ class MyArrayDataException extends RuntimeException {
     int row, column;
 
     public MyArrayDataException(int row, int column) {
-        super(row + " " + column);
+        super(row + " " + column);  // прокидываем родительское сообщение
         this.row = row;
         this.column = column;
     }
