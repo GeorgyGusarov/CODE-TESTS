@@ -1,6 +1,6 @@
 package Geekbrains_Java2.Lesson_2;
 
-public class FactorialException extends java.lang.Exception {
+public class FactorialException extends Exception {
     private int number;
 
     public int getNumber() {
