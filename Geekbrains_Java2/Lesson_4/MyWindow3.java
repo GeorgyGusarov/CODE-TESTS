@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MyWindow3 extends JFrame {
     public MyWindow3() {
@@ -40,8 +42,19 @@ public class MyWindow3 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textArea.append(textField.getText() + "\n");
-                textField.setText(" ");
-                textField.grabFocus();
+                textField.setText("");
+//                textField.grabFocus();
+            }
+        });
+        button.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    System.out.println(1);
+                    textArea.append(textField.getText() + "\n");
+                    textField.setText("");
+//                    textField.grabFocus();
+                }
             }
         });
 
