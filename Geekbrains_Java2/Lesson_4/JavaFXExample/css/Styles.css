@@ -1,8 +1,13 @@
 #button {
-    -fx-background-color: blue;
+    -fx-background-image: url("../img/sentMessage.png");
+    -fx-background-size: 20, 20;
+    -fx-background-size: 100%, 100%;
+    -fx-background-color: transparent;
 }
 
-#button : hover {
-    -fx-background-color: red;
-    -fx-text-fill: red;
+/*
+#button: hover {
+    -fx-text-fill: black;
+    -fx-background-color: gray;
 }
+*/

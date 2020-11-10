@@ -14,19 +14,22 @@
         <URL value="@/Geekbrains_Java2/Lesson_4/JavaFXExample/css/Styles.css"/>
     </stylesheets>
 
-    <TextArea fx:id="textArea"
-              editable="false"
-              VBox.vgrow="ALWAYS"
+    <TextArea
+            fx:id="textArea"
+            editable="false"
+            VBox.vgrow="ALWAYS"
     />
 
     <HBox>
-            <TextField fx:id="textField"
+            <TextField
+                    fx:id="textField"
                        HBox.hgrow="ALWAYS"
                        promptText="Введите сообщение..."
                        onAction="#sendMessage"
             />
-            <Button fx:id="button"
-                    text="Send"
+            <Button
+                    fx:id="button"
+                    text="  "
                     onAction="#sendMessage"
             />
     </HBox>
