@@ -1,19 +1,20 @@
 package Recursion;
 
 public class Test3 {
+    public static void main(String[] args) {
+        fibonacci(5);
+    }
 
-    static int fibonachi(int n) {
-
+    static int fibonacci(int n) {
+        System.out.println(n);
         if (n == 0) {
             return 0;
         }
 
         if (n == 1) {
             return 1;
-        }
-        else{
-            return fibonachi(n - 1) + fibonachi(n - 2);
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);
         }
     }
-
 }

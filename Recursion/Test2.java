@@ -1,6 +1,9 @@
 package Recursion;
 
 public class Test2 {
+    public static void main(String[] args) {
+        factorial(5);
+    }
 
     static int factorial(int x) {
         int result = 1;
@@ -8,8 +11,8 @@ public class Test2 {
         for (int i = 1; i <= x; i++) {
             result *= i;
         }
-
-        return  result;
+        System.out.println(x);
+        return result;
     }
 
 }
