@@ -21,7 +21,14 @@ public class MFU {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mfu.scan("Doc 3", 5);
+                mfu.scan("Doc 3", 5, 1);
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mfu.scan("Doc 4", 5, 2);
             }
         }).start();
     }
@@ -31,29 +38,48 @@ public class MFU {
 
     public void print(String doc, int n) {
         synchronized (printLock) {
-            System.out.println("Начало печати");
-//            for (int i = 0; i < 10; i++) {
-//                System.out.print(i);
-//            }
+            System.out.println("Начало печати " + doc);
+            for (int i = 0; i < 10; i++) {
+                System.out.println("Ожидание :" + i);
+            }
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("Конец печати");
+            System.out.println("Конец печати " + doc);
         }
     }
 
-    public void scan(String doc, int n) {
+    public void scan(String doc, int n, int source) {
         synchronized (scanLock) {
-            System.out.println("Начало сканирования");
-//            for (int i = 0; i < 10; i++) {
-//                System.out.print(i);
-//            }
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            System.out.println("Начало сканирования " + doc);
+            switch (source) {
+                case 1 :
+                    System.out.println("Сканирование в сеть " + doc);
+                    for (int i = 0; i < 10; i++) {
+                        System.out.println("Ожидание :" + i);
+                    }
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 2 :
+                    synchronized (printLock) {
+                        System.out.println("Ксерокопия начало " + doc);
+                        for (int i = 0; i < 10; i++) {
+                            System.out.println("Ожидание :" + i);
+                        }
+                        try {
+                            Thread.sleep(100);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Ксерокопия конец " + doc);
+                        break;
+                    }
             }
             System.out.println("Конец сканирования");
         }
