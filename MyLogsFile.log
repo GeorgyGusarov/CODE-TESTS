@@ -1,0 +1,20 @@
+янв. 18, 2021 9:54:02 PM Geekbrains_Java3.Lesson_6.Logs_II main
+SEVERE: Java
+янв. 18, 2021 9:54:02 PM Geekbrains_Java3.Lesson_6.Logs_II main
+INFO: C#
+янв. 18, 2021 9:54:02 PM Geekbrains_Java3.Lesson_6.Logs_II main
+CONFIG: PHP
+янв. 18, 2021 9:54:02 PM Geekbrains_Java3.Lesson_6.Logs_II main
+FINE: C++
+янв. 18, 2021 9:54:16 PM Geekbrains_Java3.Lesson_6.Logs_II main
+SEVERE: Java
+янв. 18, 2021 9:54:16 PM Geekbrains_Java3.Lesson_6.Logs_II main
+INFO: C#
+янв. 18, 2021 9:54:16 PM Geekbrains_Java3.Lesson_6.Logs_II main
+CONFIG: PHP
+янв. 18, 2021 9:54:16 PM Geekbrains_Java3.Lesson_6.Logs_II main
+FINE: C++
+SEVERE	Java	1610996149790
+INFO	C#	1610996149840
+CONFIG	PHP	1610996149841
+FINE	C++	1610996149842
