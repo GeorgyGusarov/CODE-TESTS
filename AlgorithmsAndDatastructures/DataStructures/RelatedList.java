@@ -3,9 +3,10 @@ package AlgorithmsAndDatastructures.DataStructures;
 import java.util.Objects;
 
 public class RelatedList {
+    // класс узла (головной элемент)
     private class Node {
         Cat c;
-        Node next; // ссылка на следующий Node
+        Node next; // ссылка на следующий Node (узел)
 
         public Node(Cat c) {
             this.c = c;
@@ -30,7 +31,7 @@ public class RelatedList {
         }
     }
 
-    private Node head;
+    private Node head; // содержит ссылку на самый первый узел
 
     public RelatedList() {
         head = null;
@@ -70,7 +71,7 @@ public class RelatedList {
         return find(c) == null;
     }
 
-    private Node find(Cat c) {
+    public Node find(Cat c) {
         if (isEmpty()) return null;
         Node current = head;
         while (!current.c.equals(c)) {
@@ -103,54 +104,6 @@ public class RelatedList {
     }
 }
 
-class Cat {
-    public int id;
-    private int age;
-    private String name;
-
-    public Cat(int age, String name) {
-        this.age = age;
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Cat{" +
-                "age=" + age +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cat cat = (Cat) o;
-        return age == cat.age && Objects.equals(name, cat.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(age, name);
-    }
-}
-
 class RelatedListMain {
     public static void main(String[] args) {
         RelatedList rl = new RelatedList();
@@ -161,6 +114,12 @@ class RelatedListMain {
         rl.push(new Cat(6, "cat5"));
         System.out.println(rl);
         System.out.println(rl.pop());
+        System.out.println(rl);
+        Cat cat6 = new Cat(7, "cat6");
+        rl.push(cat6);
+        System.out.println(rl);
+        System.out.println(rl.find(cat6));
+        rl.delete(cat6);
         System.out.println(rl);
     }
 }
