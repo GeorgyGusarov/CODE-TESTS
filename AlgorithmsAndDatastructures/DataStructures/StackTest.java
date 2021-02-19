@@ -37,7 +37,7 @@ public class StackTest {
     /**
      * return an element from stack
      */
-    public int pop( ) { // like deleteLast()
+    public int pop() { // like deleteLast()
         if (isEmpty()) throw new NoSuchElementException("Stack is empty!");
         return stack[head--];
     }
@@ -47,5 +47,51 @@ public class StackTest {
      */
     public int peek() {
         return stack[head];
+    }
+
+    @Override
+    public String toString() {
+        if (stack == null) {
+            return "null";
+        }
+
+        int iMax = capacity - 1;
+        if (iMax == -1) {
+            return "[]";
+        }
+
+        StringBuilder b = new StringBuilder();
+        b.append('[');
+        int i = 0;
+        while (true) {
+            b.append(stack[i]);
+            if (i == iMax) {
+                return b.append(']').toString();
+            }
+            b.append(", ");
+            i++;
+        }
+    }
+}
+
+class StackMain {
+    public static void main(String[] args) {
+        StackTest stack = new StackTest(10);
+        stack.isEmpty();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+        stack.push(5);
+        stack.push(6);
+        stack.push(7);
+        stack.push(8);
+        stack.push(9);
+        stack.push(10);
+        System.out.println(stack.isFull());
+        System.out.println(stack.peek());
+        System.out.println(stack);
+        stack.pop();
+        System.out.println(stack);
     }
 }

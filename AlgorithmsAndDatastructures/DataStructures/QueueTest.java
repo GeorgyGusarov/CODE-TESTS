@@ -96,4 +96,56 @@ public class QueueTest {
     public void setItems(int items) {
         this.items = items;
     }
+
+    @Override
+    public String toString() {
+        if (queue == null) {
+            return "null";
+        }
+
+        int iMax = capacity - 1;
+        if (iMax == -1) {
+            return "[]";
+        }
+
+        StringBuilder b = new StringBuilder();
+        b.append('[');
+        int i = 0;
+        while (true) {
+            b.append(queue[i]);
+            if (i == iMax) {
+                return b.append(']').toString();
+            }
+            b.append(", ");
+            i++;
+        }
+    }
+}
+
+class QueueTestMain {
+    public static void main(String[] args) {
+        QueueTest queue = new QueueTest(10);
+        System.out.println(queue.isEmpty());
+        System.out.println(queue);
+        queue.insert(1);
+        queue.insert(2);
+        queue.insert(3);
+        queue.insert(4);
+        queue.insert(5);
+        queue.insert(6);
+        queue.insert(7);
+        queue.insert(8);
+        queue.insert(9);
+        queue.insert(10);
+        System.out.println(queue);
+        System.out.println("items: " + queue.getItems());
+        System.out.println("size: " + queue.getSize());
+        System.out.println("head: " + queue.getHead());
+        System.out.println("tail: " + queue.getTail());
+        queue.setTail(77);
+        queue.setHead(77);
+        System.out.println("head: " + queue.getHead());
+        System.out.println("tail: " + queue.getTail());
+        System.out.println(queue);
+    }
 }
