@@ -31,10 +31,9 @@ class Cat {
 
     @Override
     public String toString() {
-        return "Cat{" +
-                "age=" + age +
-                ", name='" + name + '\'' +
-                '}';
+        return  "(A: " + age +
+                ", N: " + name + '\'' +
+                ")";
     }
 
     @Override

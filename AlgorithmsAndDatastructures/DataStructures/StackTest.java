@@ -85,9 +85,7 @@ class StackMain {
         stack.push(5);
         stack.push(6);
         stack.push(7);
-        stack.push(8);
-        stack.push(9);
-        stack.push(10);
+
         System.out.println(stack.isFull());
         System.out.println(stack.peek());
         System.out.println(stack);

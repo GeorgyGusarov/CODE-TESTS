@@ -1,5 +1,7 @@
 package AlgorithmsAndDatastructures.DataStructures;
 
+import AlgorithmsAndDatastructures.DataStructures.Link;
+
 public class LinkedList {
     public Link first;
 
