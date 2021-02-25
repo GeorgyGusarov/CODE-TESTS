@@ -1,4 +1,4 @@
-package Geekbrains_Java2.Lesson_3;
+package Geekbrains_Java2.Lesson_3_Collections;
 
 import java.util.HashSet;
 
