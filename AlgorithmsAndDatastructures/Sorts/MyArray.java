@@ -164,6 +164,27 @@ public class MyArray {
     }
 
     /**
+     * binary search
+     */
+    private int recBinaryFind(int searchKey, int low, int high) {
+        int curIn;
+        curIn = (low + high ) / 2;
+        if (arr[curIn] == searchKey) {
+            return curIn;
+        } else {
+            if (low > high) {
+                return size;
+            } else {
+                if(arr[curIn] < searchKey) {
+                    return recBinaryFind(searchKey, curIn+1, high);
+                } else {
+                    return recBinaryFind(searchKey, low, curIn-1);
+                }
+            }
+        }
+    }
+
+    /**
      * personal method for bubble sort
      */
     private void swap(int a, int b) {

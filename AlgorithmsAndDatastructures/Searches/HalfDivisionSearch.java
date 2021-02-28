@@ -59,6 +59,7 @@ class CustomArray {
         isSorted = true;
     }
 
+    // HalfDivisionSearch - works only on sorted array
     public boolean hasValue(int value) {
         if (!isSorted) throw new RuntimeException("try the 'find()' method");
         int l = 0;
