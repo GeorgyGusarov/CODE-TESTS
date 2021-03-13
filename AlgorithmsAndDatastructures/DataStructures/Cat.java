@@ -2,7 +2,7 @@ package AlgorithmsAndDatastructures.DataStructures;
 
 import java.util.Objects;
 
-// an object for testing RelatedList
+// an object for testing RelatedList & Tree
 class Cat {
     public int id;
     private int age;
