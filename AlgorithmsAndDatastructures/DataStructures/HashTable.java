@@ -64,28 +64,54 @@ public class HashTable {
     }
 
     /**
+     * квадротичное пробирование
+     */
+    private int quadProbe(int hashVal, int step) {
+        hashVal += step * step;
+        hashVal %= arrSize;
+        return hashVal;
+    }
+
+    /**
+     * двойное хэширование
+     */
+    private int hashFuncDouble(int key) {
+        return 7 - (key % 7);
+    }
+
+    private int doubleHash(int hashVal, int key) {
+        int step = hashFuncDouble(key);
+        hashVal += step;
+        hashVal %= arrSize;
+        return hashVal;
+    }
+
+    /**
      * поиск элемента
      */
     public Item find(int key) {
         int hashVal = hashFunc(key); // находим хэш ключа при помощи функции и кладем его в Val
+        int count = 1;
         while (hashArray[hashVal] != null) { // если ячейка массива не пуста
             if (hashArray[hashVal].getData() == key) { // содержит ли она искомый ключ
                 return hashArray[hashVal]; // если да, то возвращаем значение
             }
-            hashVal = linearProbe(hashVal);
+            // hashVal = doubleHash(hashVal, key);
+            hashVal = quadProbe(hashVal, ++count);
         }
         return null;
     }
 
     /**
-     * вставка элимента
+     * вставка элемента
      */
     public void insert(Item item) {
         int key = item.getData();
         int hashVal = hashFunc(key);
 //        if (isFull()) increaseCapacity();
+        int count = 1;
         while (hashArray[hashVal] != null && hashArray[hashVal] != nullItem) {
-            hashVal = linearProbe(hashVal);
+            hashVal = quadProbe(hashVal, ++count);
         }
         hashArray[hashVal] = item;
     }
@@ -95,14 +121,14 @@ public class HashTable {
      */
     public Item delete(int key) {
         int hashVal = hashFunc(key);
+        int count = 1;
         while (hashArray[hashVal] != null) {
             if (hashArray[hashVal].getData() == key) {
                 Item temp = hashArray[hashVal];
                 hashArray[hashVal] = nullItem;
                 return temp;
             }
-            ++hashVal;
-            hashVal %= arrSize;
+            hashVal = quadProbe(hashVal, ++count);
         }
         return null;
     }
